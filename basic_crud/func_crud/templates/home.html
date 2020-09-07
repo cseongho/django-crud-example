@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Based CRUD</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    
+    <!-- write -->
+    <a href="{% url 'createPage' %}"><button class="btn btn-primary">Add post</button></a>
+
+    <!-- blog view-->
+    {% for crud in posts  %}
+
+        <h2>{{crud.title}}</h2>
+        <h5>{{crud.date}}</h5>
+        <img src="../media/{{crud.src}}" height="200" width="200" alt="image"><br>
+        <a href="{% url 'detailPage' crud.id %}">more</a>
+        <a href ="{% url 'updatePage' crud.id %}"> Edit</a>
+        <a href ="{% url 'deleteFunction' crud.id %}"> Delete</a>
+        <hr>
+    {% endfor %}
+
+    
+    <div class="page-wrapper">
+        <ul class="pagination justify-content-center">
+            <!-- 이전 페이지 -->
+            {% if posts.has_previous %}
+            <li class="page-item">
+                <a href="?page=1" class="page-link">&laquo;</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" 
+                   href="?page={{ posts.previous_page_number }}" 
+                   tabindex="-1">&lt;
+                </a>
+            </li>
+            {% endif %}
+            <!-- 페이지 범위 및 현재 페이지 -->
+            {% for page in paginator_range %}
+            {% if posts.number == page %}
+            <li class="page-item active">
+                <span class="page-link">{{ page }}
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            <!-- 다음 페이지 -->
+            {% if posts.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ posts.next_page_number }}">&gt;</a>
+            </li>
+            <li class="page-item">
+                <a href="?page={{ posts.paginator.num_pages }}" class="page-link">&raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+    
+</body>
+</html>

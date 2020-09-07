@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Based CRUD</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+          <h1>{{ detail.title }}</h1>
+          <img src="../media/{{detail.src}}" height="200" width="200" alt="image">
+          <h5>{{ detail.date }}</h5>
+          <p>{{ detail.description }}</p>
+          
+          <a href="{% url 'homePage' %}">Prev</a>
+          <a href ="{% url 'updatePage' detail.id %}"> Edit</a>
+          <a href ="{% url 'deleteFunction' detail.id %}"> Delete</a>  
+</body>
+</html>

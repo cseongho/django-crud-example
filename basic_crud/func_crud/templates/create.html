@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Function Based CRUD</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <form action="{% url 'createFunction' %}" enctype="multipart/form-data" method="POST"
+    style="margin-left: 200px; margin-right: 200px;">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="title">Post Title</label>
+      <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp"
+        placeholder="Enter Title">
+    </div>
+    <div class="form-group">
+      <label for="description">Post Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3"
+        placeholder="Enter Description"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Image File Upload</label>
+      <br>
+      {{form.photo}}
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+  </form>
+
+</body>
+
+</html>
